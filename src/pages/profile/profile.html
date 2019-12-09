@@ -1,0 +1,131 @@
+<ion-header [ngClass]="{'hidden' : (user_view != null)}">
+  <ion-navbar>
+    <button *ngIf="user_view == null" clear small color="light" ion-button class="setting-nav" (click)="finder()">
+      <ion-icon name="ios-pin-outline"></ion-icon>
+    </button>
+    <div *ngIf="user_view == null" class="brand">
+      <!-- <ion-title>Home</ion-title> -->
+      <img src="assets/img/logo_chili.png" alt="">
+    </div>
+    <button *ngIf="user_view == null" clear small color="light" ion-button class="upload-nav" (click)="up_product()">
+      <ion-icon name="ios-paper-plane-outline"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content [ngClass]="{'no-header' : (user_view != null)}" *ngIf="obj == null || obj == 0">
+  <div class="empty_data">
+    <div>
+      <h4>{{'need_to_login' | translate }}</h4>
+      <p> {{'login_quote' | translate }}</p>
+      <button small color="light" ion-button color="dark" round (click)="open_login()"> {{'login_now' | translate }}</button>
+    </div>
+  </div>
+</ion-content>
+<ion-content [ngClass]="{'no-header' : (user_view != null)}" *ngIf="obj != null && obj != 0">
+  <button ion-button color="light" class="btn-close" small clear *ngIf="user_view != null" (click)="dismiss()">
+    <ion-icon name="ios-close-circle-outline"></ion-icon>
+  </button>
+  <div padding class="main-info">
+    <div class="wrapper-info">
+      <button ion-button color="light" clear *ngIf="user_view == null" (click)="logout()">
+        <ion-icon name="md-log-out"></ion-icon>
+      </button>
+      <h3>{{obj.user_name}}</h3>
+
+      <span *ngIf="user_view == null">
+        <div class="avt" (click)='selectPhotoOptions()'>
+          <img *ngIf="obj.avt != null && obj.avt.indexOf('graph.facebook.com')==-1" src="{{base_url + obj.avt}}">
+          <img *ngIf="obj.avt != null && obj.avt.indexOf('graph.facebook.com')!=-1" src="{{obj.avt}}">
+          <img *ngIf="obj.avt == null" src="assets/avt.png">
+          <span class="title">    {{'tap_to_change_avt' | translate }}</span>
+        </div>
+      </span>
+
+      <span *ngIf="user_view != null">
+        <div class="avt">
+          <img *ngIf="obj.avt != null && obj.avt.indexOf('graph.facebook.com')==-1" src="{{base_url + obj.avt}}">
+          <img *ngIf="obj.avt != null && obj.avt.indexOf('graph.facebook.com')!=-1" src="{{obj.avt}}">
+          <img *ngIf="obj.avt == null" src="assets/avt.png">
+          <span class="title">    {{'tap_to_change_avt' | translate }}</span>
+        </div>
+      </span>
+
+      <button ion-button color="light" clear *ngIf="user_view == null" (click)="edit_prf()">
+        <ion-icon name="md-create"></ion-icon>
+      </button>
+      <p class="email">{{obj.email}}</p>
+      <p class="phone">
+        <ion-icon name="ios-call"></ion-icon>+{{obj.phone}}</p>
+        <p class="photo_numb">All {{total_item}} items posted</p>
+      </div>
+    </div>
+    <div class="more-info" padding *ngIf="user_view != null">
+      <p> {{'fullname' | translate }}:</p>
+      <h5>{{obj.full_name}}</h5>
+      <p> {{'address' | translate }}:</p>
+      <h6>{{obj.address}}</h6>
+    </div>
+    <div class="wrapper-edit" padding *ngIf="user_view == null && check_edit == true">
+      <h4>{{'edit_profile' | translate }}</h4>
+      <ion-item>
+        <ion-label stacked> {{'fullname' | translate }}</ion-label>
+        <ion-input [(ngModel)]="full_name" type="text"></ion-input>
+      </ion-item>
+      <i class="text-left">* 5 < length < 50 characters</i>
+      <ion-item>
+        <ion-label stacked>Phone</ion-label>
+        <ion-input [(ngModel)]="phone" type="number"></ion-input>
+      </ion-item>
+      <i class="text-left">* 6 < length < 20 number</i>
+      <ion-item>
+        <ion-label stacked>Address</ion-label>
+        <ion-input [(ngModel)]="address" type="text"></ion-input>
+      </ion-item>
+      <i class="text-left">* 5 < length < 250 characters</i>
+      <b *ngIf="msg_err_edit != null" class="msg_err">{{msg_err_edit}}</b>
+      <button ion-button small clear (click)="upload_edit()">
+        {{'save' | translate }}
+      </button>
+      <h4>{{'change_password' | translate }}</h4>
+      <i>5 < pwd < 60 characters && do not contain special characters</i>
+      <ion-item>
+        <ion-label stacked> {{'old_password' | translate }}</ion-label>
+        <ion-input [(ngModel)]="old_pwd" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked> {{'new_password' | translate }}</ion-label>
+        <ion-input [(ngModel)]="new_pwd" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked> {{'confirm' | translate }}</ion-label>
+        <ion-input [(ngModel)]="confirm_pwd" type="password"></ion-input>
+      </ion-item>
+      <b *ngIf="msg_err_pwd != null" class="msg_err">{{msg_err_pwd}}</b>
+      <button ion-button small clear (click)="change_password()">
+        {{'save_password' | translate }}
+      </button>
+      <div>
+        <button ion-button clear class="btn-close-edit" (click)="un_edit_prf()">
+          <ion-icon name="ios-arrow-dropup-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <ion-row *ngIf="lists.empty != 1">
+      <h4>{{'all_products' | translate }}</h4>
+      <ion-col col-6 *ngFor="let item of lists ; let i = index">
+        <ion-card>
+          <img src="{{base_url + item.image_path}}" (click)="view(item)" />
+          <ion-card-content (click)="view(item)">
+            <ion-card-title>{{item.title}}</ion-card-title>
+            <p class="price">{{'price' | translate }}: {{item.price}}</p>
+          </ion-card-content>
+          <button ion-button small clear *ngIf="user_view == null" (click)="edit_product(item)">
+            <ion-icon name="md-create"></ion-icon>
+          </button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Post Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="img_lists.length>0">
+    <ion-slides initialSlide="0">
+      <ion-slide *ngFor="let item of img_lists">
+        <img src="{{base_url + item.path}}" >
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <ion-item>
+    <ion-avatar item-start (click)="view_prf(obj.user_id)">
+      <img *ngIf="obj.avt != null && obj.avt.indexOf('graph.facebook.com')==-1" src="{{base_url + obj.avt}}">
+      <img *ngIf="obj.avt != null && obj.avt.indexOf('graph.facebook.com')!=-1" src="{{obj.avt}}">
+      <img *ngIf="obj.avt == null" src="assets/avt.png">
+    </ion-avatar>
+    <div>
+      <h2 (click)="view_prf(obj.user_id)">{{obj.user_name}}</h2>
+      <p>posted at {{obj.created_at}}</p>
+    </div>
+    <div class="more">
+      <button ion-button icon-left clear [ngClass]="{'active' : (obj.report == true)}" (click)="report(obj.id)">
+        <ion-icon name="ios-flag-outline"></ion-icon>
+      </button>
+    </div>
+  </ion-item>
+  <div padding>
+    <h2 class="title">{{obj.title}}</h2>
+    <rating [(ngModel)]="obj.rating" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" (click)="rate()">
+    </rating>
+    <p class="price">{{'price' | translate}}: {{obj.price}}</p>
+    <p class="local">{{'location' | translate}}: {{obj.location}}</p>
+    <p class="purpose">{{'purpose' | translate}}:
+      <span *ngIf="obj.purpose == 0">{{'buy' | translate}}</span>
+      <span *ngIf="obj.purpose == 1">{{'sell' | translate}}</span>
+    </p>
+    <p class="condition">{{'condition' | translate}}:
+      <span *ngIf="obj.cond == 0">{{'new' | translate}}</span>
+      <span *ngIf="obj.cond == 1">{{'second_hand' | translate}}</span>
+    </p>
+    <p class="txt-content">{{obj.content}}</p>
+    
+    <div class="map-wrapper">
+      <div #map id="map"></div>
+    </div>
+    <div class="action">
+      <button small claer color="light" round block ion-button (click)="this.helpersProvider.call(obj.phone)">
+        <ion-icon name="ios-call"></ion-icon> {{'call' | translate }}
+      </button>
+      <button small claer color="light" round block ion-button [ngClass]="{'active' : (obj.favorites == true)}" (click)="favorites()">
+        <ion-icon name="ios-heart"></ion-icon> {{'favorites' | translate }}
+      </button>
+      <button small claer color="light" round block ion-button (click)="this.productProvider.share(obj)">
+        <ion-icon name="md-share"></ion-icon> {{'share' | translate }}
+      </button>
+      <button small claer color="light" round block ion-button (click)="mail(obj)">
+        <ion-icon name="ios-mail"></ion-icon> {{'mail' | translate }}
+      </button>
+    </div>
+
+
+    <div class="attachment">
+      <ion-icon name="md-attach" item-start></ion-icon>
+      <span>{{'attachments' | translate }}</span>
+      <ion-row>
+        <ion-col col-3 *ngFor="let item of attachment; let i = index">
+          <img (click)="view(item)" src="{{base_url + item.image_path}}" alt="">
+        </ion-col>
+      </ion-row>
+      <button ion-button clear (click)="view_prf(obj.user_id)">{{'view_more' | translate }}</button>
+    </div>
+  </div>
+  <!--<div class="comment" padding>
+    <h4>Comments</h4>
+    <div class="wrapper-cmt"></div>
+  </div>-->
+</ion-content>

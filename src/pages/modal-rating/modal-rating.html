@@ -1,0 +1,16 @@
+<ion-content class="no-scroll">
+  <ion-row class="close-modal" (click)="dismiss()"></ion-row>
+  <ion-row class="main-modal" col-2>
+    <div class="wrapper">
+      <h6>{{'write_your_review' | translate}}</h6>
+      <rating [(ngModel)]="point" readOnly="false" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
+      </rating>
+      <div>
+        <ion-item>
+          <textarea [(ngModel)]="message" placeholder="{{'content' | translate}}" style="resize:none"></textarea>
+        </ion-item>
+        <button class="btn-rate" ion-button full round color="dark" (click)="rate()">{{'rate' | translate}}</button>
+      </div>
+    </div>
+  </ion-row>
+</ion-content>

@@ -1,6 +1,4 @@
-// http://ionicframework.com/docs/theming/
-
-
+// http://ionicframework.com/docs/v2/theming/
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +12,197 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.header:after {
+  display: none;
+}
+
+.toolbar {
+  min-height: 45px !important;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1) !important; // border-bottom: 1px solid #f1f1f1;
+  // &-md{
+  // 	box-shadow: none !important;
+  // }
+  .toolbar-background {
+    background: #fff;
+    border: none;
+  }
+  .toolbar-content {
+    display: flex;
+    align-items: center;
+    ion-title {
+      // float: left;
+    }
+  }
+  ion-title {
+    &.title-ios {
+      margin-top: -3px !important;
+      position: relative !important;
+      min-height: initial !important;
+      padding: 0 !important;
+      padding-left: 15px !important;
+      height: initial !important;
+      .toolbar-title {
+        text-align: left !important;
+      }
+    }
+  }
+}
+
+.brand {
+  flex: 1;
+  height: 20px;
+  text-align: center;
+  img {
+    height: 100%;
+  }
+}
+
+.setting-nav {
+  color: #bebebe;
+  font-size: 1.8rem !important;
+  float: left;
+  height: 1.5em;
+}
+
+.upload-nav {
+  color: #bebebe;
+  font-size: 1.8rem !important;
+  float: right;
+  height: 1.5em;
+}
+
+ion-content {
+  margin: 0 !important;
+}
+
+.empty_data {
+  text-align: center;
+  padding: 0px 30px;
+  height: 100%;
+  display: flex;
+  justify-align: center;
+  align-items: center;
+  width: 100% !important;
+  background: #fff;
+  >div {
+    width: 100% !important;
+    text-align: center;
+  }
+  h4 {
+    margin-top: -40px !important;
+    width: 100% !important;
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+  p {
+    width: 100% !important;
+    color: #757575;
+  }
+}
+
+.lst-products {
+  ion-card {
+    margin: 0px 0px 10px 0px !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    ion-item {
+      ion-label {
+        margin: 0px !important;
+      }
+      ion-avatar {
+        margin: 8px 8px 8px 0px !important;
+        min-height: 30px !important;
+        min-width: 30px !important;
+        img {
+          width: 30px !important;
+          height: 30px !important;
+        }
+      }
+      h2 {
+        vertical-align: middle;
+        font-size: 1.3rem !important;
+        line-height: 30px !important;
+        display: inline !important;
+        b {
+          font-size: 1.5rem;
+          margin-right: 3px;
+        }
+      }
+      .more {
+        display: inline;
+        float: right;
+        button {
+          color: #bebebe;
+          ion-icon {
+            font-size: 2rem;
+          }
+          &.active ion-icon {
+            color: #f5265a;
+          }
+        }
+      }
+    }
+    ion-card-title {
+      font-size: 1.7rem !important;
+      font-weight: 500;
+      padding-top: 5px !important;
+      max-height: 54px;
+      overflow: hidden;
+      margin-bottom: 8px !important;
+    }
+    .local {
+      padding-bottom: 5px;
+      color: #757575;
+      font-size: 1.2rem;
+      ion-icon {
+        margin-right: 3px;
+        vertical-align: middle;
+      }
+    }
+    .price {
+      padding-bottom: 10px;
+      font-weight: bold;
+      color: #212121 !important;
+    }
+    p {
+      line-height: 2rem !important;
+      font-size: 1.3rem !important;
+      color: #555 !important;
+    }
+    ion-row {
+      text-align: center;
+      ion-col {
+        padding-top: 0 !important;
+      }
+      button {
+        ion-icon {
+          font-size: 1.8rem !important;
+          color: #bebebe;
+        }
+        &.active {
+          ion-icon {
+            color: #212121;
+          }
+        }
+      }
+    }
+  }
+  rating ul {
+    padding: 0px;
+    margin-left: -10px;
+  }
+}
+
+.err {
+  margin-top: -10px !important;
+  color: #F44336 !important;
+}
+
+.lst-products ion-card ion-item h2 b {
+  width: 101px;
+  display: block;
+  overflow: hidden;
+  float: left;
+  text-overflow: ellipsis;
+}

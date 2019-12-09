@@ -1,3 +1,93 @@
 page-home {
+	ion-content{
+		background: #ebebeb !important;
+	}
+	ion-list{
+		z-index: 100;
+		position: relative;
+		background: #ebebeb;
+		.decor{
+			z-index: 100;
+			position: absolute;
+			height: 40px;
+			top: -39px;
+			width: 100%;
+			left: 0;
+			text-align: center;
+			img{
+				margin: 0px auto;
+				height: 100%;
+				max-width: none !important;
+				min-width: 120%;
+			}
+		}
+	}
+	ion-slides{
+		z-index: 10;
+		height: 75%;
+		background: #fff;
+		position: sticky !important;
+		top: 0;
+		.swiper-container{
+			overflow: initial !important;
+		}
+		.swiper-pagination{
+			bottom: 40px !important;
+			button{
+				background: #fff !important;
+			}
+			button.swiper-pagination-bullet-active{
+				background: #f5265a !important;
+			}
+		}
+		img{
+			height: 100% !important;
+			min-width: 100% !important;
+			max-width: auto !important;
+			width: auto !important;
+		}
+		.slogan{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgba(0,0,0,0.3);
+			.wrapper-slogan{
+				margin-top: -30px;
+				text-align: left;
+				color: #fff;
+				padding: 0px 30px;
+				ion-label{
+					font-style: italic;
+					font-weight: 100;
+				}
+				h2{
+					text-transform: uppercase;
+					font-size: 2.5rem;
+				}
+				p{
+					font-size: 1.3rem;
+					margin-bottom: 30px;
+				}
+				button{
 
+				}
+			}
+		}
+		.slide-zoom{
+			// display: grid !important;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+		}
+	}
 }

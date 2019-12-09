@@ -1,0 +1,65 @@
+<!--
+  Generated template for the FinderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>finder</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ <ion-row>
+  <ion-col col-6>
+    <ion-item>
+      <ion-label style="max-width: 30px;">
+        <ion-icon name="ios-list-outline"></ion-icon>
+      </ion-label>
+      <ion-select style="flex: 1; max-width: none; padding-left: 0; text-align: center; margin: 0" [(ngModel)]="distance" (ionChange)="change_distance()">
+        <ion-option value="">Distance (Not Set)</ion-option>
+        <ion-option *ngFor="let item of distance_list; let i = index" value="{{item}}">{{item}}km</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+
+
+  <ion-col col-6>
+    <ion-item>
+      <ion-label style="max-width: 30px;">
+        <ion-icon name="ios-list-outline"></ion-icon>
+      </ion-label>
+      <ion-select style="flex: 1; max-width: none; padding-left: 0; text-align: center; margin: 0" [(ngModel)]="cat" (ionChange)="select_change()">
+        <ion-option value="">All Categories</ion-option>
+        <ion-option *ngFor="let item of cat_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+
+</ion-row>
+
+<ion-row class="price">
+  <ion-item>
+    <ion-label style="width: 100%; margin-bottom: 0; margin-right: 5px;">Price
+      <span style="float: right;">
+        <ion-badge style="margin: 0;" color="dark" item-end="">{{price.lower}}</ion-badge>
+        <ion-badge style="margin: 0;" color="dark" item-end="">{{price.upper}}</ion-badge>
+      </span>
+    </ion-label>
+    <ion-range style="padding: 0;" dualKnobs="true" color="dark" [(ngModel)]="price" min="1" max="1000000" step="1" (ionBlur)="select_change()">
+      <ion-label small range-left>0</ion-label>
+      <ion-label small range-right>1000</ion-label>
+    </ion-range>
+  </ion-item>
+</ion-row>
+
+<ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" placeholder="search in "></ion-searchbar>
+
+<div #map id="map"></div> 
+<div style="text-align: center;margin-top: 5px;margin-bottom: 50px">
+ <button ion-button (click)="prev()">Prev</button>
+ <button ion-button (click)="next()">Next</button>
+ <button ion-button (click)="loadMore()">Load More</button>
+</div>
+</ion-content>

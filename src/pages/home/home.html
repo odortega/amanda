@@ -1,14 +1,101 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <button clear small color="light" ion-button class="setting-nav" (click)="finder()">
+      <ion-icon name="ios-pin-outline"></ion-icon>
+    </button>
+    <div class="brand">
+      <!-- <ion-title>Home</ion-title> -->
+      <img src="assets/img/logo_chili.png" alt="">
+    </div>
+    <button clear small color="light" ion-button class="upload-nav" (click)="up_product()">
+      <ion-icon name="ios-paper-plane-outline"></ion-icon>
+    </button>
   </ion-navbar>
 </ion-header>
+<ion-content>
+  <div *ngIf="slider_lists.length > 1">
+    <ion-slides pager="true" effect="coverflow" initialSlide="0" (ionSlideAutoplayStart)='setting_slides()'>
+      <ion-slide *ngFor="let item of slider_lists ; let i = index">
+        <img src="{{base_url + item.image_path}}" alt="" style="height: 400px !important">
+        <div class="slogan">
+          <div class="wrapper-slogan" padding>
+            <h2>{{item.title.toString().slice(0,25) + '...'}}</h2>
+            <p>{{item.content.toString().slice(0,65) + '...'}}</p>
+            <button ion-button round icon-left small color="light" (click)="this.productProvider.view(this.navCtrl,item)">
+              <ion-icon name="md-search"></ion-icon>{{'detail' | translate }}
+            </button>
+            <button ion-button round icon-left small color="light" (click)="this.helpersProvider.call(item.phone)">
+              <ion-icon name="ios-call"></ion-icon>{{'now' | translate }}
+            </button>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div *ngIf="lists.empty == 1" class="empty_data">
+    <div>
+      <h4>not found</h4>
+      <p>There are currently no products available in the area you require!</p>
+    </div>
+  </div>
+  <ion-list class="lst-products" *ngIf="lists.empty != 1">
+    <div class="decor">
+      <img src="assets/img/decor.png" alt="">
+    </div>
+    <ion-card *ngFor="let item of lists ; let i = index">
+      <ion-item>
+        <ion-avatar item-start (click)="this.helpersProvider.viewProfile(this.navCtrl,item.user_id)">
+          <img *ngIf="item.avt != null && item.avt.indexOf('graph.facebook.com')==-1" src="{{base_url + item.avt}}">
+          <img *ngIf="item.avt != null && item.avt.indexOf('graph.facebook.com')!=-1" src="{{item.avt}}">
+          <img *ngIf="item.avt == null" src="assets/avt.png">
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+        </ion-avatar>
+        <h2><b (click)="this.helpersProvider.viewProfile(this.navCtrl,item.user_id)">{{item.user_name}}</b> posted {{item.created_at}}</h2>
+        <div class="more">
+          <button [ngClass]="{'active' : (item.report == true)}" ion-button icon-left clear (click)="report(item.id, i)">
+            <ion-icon name="ios-flag-outline"></ion-icon>
+          </button>
+        </div>
+      </ion-item>
+      <img src="{{base_url + item.image_path}}" (click)="this.productProvider.view(this.navCtrl,item)" />
+      <ion-card-content (click)="this.productProvider.view(this.navCtrl,item)">
+        <ion-card-title>
+          {{item.title}}
+        </ion-card-title>
+        <rating [(ngModel)]="item.rating" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
+        </rating>
+        <div class="local">
+          <ion-icon name="md-locate"></ion-icon>
+          {{item.location}}
+        </div>
+        <p class="price">price: {{item.price}}</p>
+        <p>{{item.content.toString().slice(0,107) + '...'}}</p>
+      </ion-card-content>
+      <ion-row>
+        <ion-col col-3>
+          <button ion-button icon-left clear (click)="mail(item)">
+            <ion-icon name="ios-mail"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button icon-left clear (click)="this.helpersProvider.call(item.phone)">
+            <ion-icon name="ios-call"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-3>
+          <button [ngClass]="{'active' : (item.favorites == true)}" ion-button icon-left clear (click)="favorites(item.id, i)">
+            <ion-icon name="ios-heart"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button icon-left clear (click)="this.productProvider.share(item)">
+            <ion-icon name="md-share"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

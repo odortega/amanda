@@ -1,0 +1,26 @@
+page-search {
+	ion-content{
+		background: #f1f1f1 !important;
+		.wrapper-query{
+			background: #fff;
+			margin-bottom: 10px;
+			.price{
+				.item-inner{
+					border: none !important;
+				}
+			}
+			.searchbar-search-icon{
+				top: 7px;
+			}
+			.searchbar-input{
+				font-weight: bold;
+				line-height: 2.7rem;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				background: #ebebeb;
+				box-shadow: none;
+				border-radius: 3px;
+			}
+		}
+	}
+}

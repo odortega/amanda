@@ -1,0 +1,89 @@
+<ion-content>
+  <button ion-button icon-only clear class="btn-close" round (click)="dismiss()">
+    <ion-icon name="ios-close-circle-outline"></ion-icon>
+  </button>
+  <div padding>
+    <img class="logo" src="assets/img/logo_chili.png" alt="">
+    <h2 class="status">    {{'edit_product' | translate }}</h2>
+    <div padding>
+      <ion-grid class="gallery">
+        <ion-row *ngIf="images_list.length>0">
+          <ion-col col-6 *ngFor="let item of images_list">
+            <img src="{{base_url+item.path}}" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div padding>
+      <ion-row>
+        <ion-col col-12>
+          <div class="wrapper-img" (click)="selectPhotoOptions()">
+            <div *ngIf="my_photo">
+              <img src="{{my_photo}}" style="width: 128px;height: 128px" />
+            </div>
+            <div *ngIf="!my_photo">
+              <img src="assets/img/thumb.png" />
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <form [formGroup]="form">
+  <div padding>
+    <ion-item>
+      <ion-label stacked>    {{'title' | translate }}</ion-label>
+      <ion-input type="text" formControlName="title" placeholder="Title"></ion-input>
+    </ion-item>
+     <p class="err"  *ngIf="!form.controls.title.valid  && (form.controls.title.dirty || submitAttempt)">*Require, More than 5 and less than 200 characters</p>
+
+    <ion-item>
+      <ion-label stacked>    {{'price' | translate }}</ion-label>
+      <ion-input type="number" formControlName="price" placeholder="Price"></ion-input>
+    </ion-item>
+      <p class="err"  *ngIf="!form.controls.price.valid  && (form.controls.price.dirty || submitAttempt)">* Required</p>
+
+    <ion-item>
+      <ion-label>    {{'categories' | translate }}</ion-label>
+      <ion-select formControlName="categories">
+        <ion-option *ngFor="let item of categories_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>    {{'county' | translate }}</ion-label>
+      <ion-select formControlName="county" (ionChange)="load_cities()">
+        <ion-option *ngFor="let item of county_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>    {{'cities' | translate }}</ion-label>
+      <ion-select formControlName="cities">
+        <ion-option *ngFor="let item of cities_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>    {{'condition' | translate }}</ion-label>
+      <ion-select formControlName="condition">
+        <ion-option *ngFor="let item of condition_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>    {{'purpose' | translate }}</ion-label>
+      <ion-select formControlName="purpose">
+        <ion-option *ngFor="let item of purpose_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <div padding>
+    <ion-item>
+      <ion-label stacked>    {{'content' | translate }}</ion-label>
+      <ion-textarea formControlName="content" placeholder="Content"></ion-textarea>
+    </ion-item>
+       <p class="err"  *ngIf="!form.controls.content.valid  && (form.controls.content.dirty || submitAttempt)">* Required</p>
+    <button class="btn-save" ion-button round color="dark" type="submit" (click)="edit()" [disabled]="!form.valid">   
+     {{'save' | translate }}</button>
+  </div>
+  </form>
+
+</ion-content>

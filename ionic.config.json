@@ -1,5 +1,8 @@
 {
   "name": "chili",
-  "integrations": {},
-  "type": "ionic-angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "f4207168"
 }

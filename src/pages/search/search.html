@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-navbar>
+    <button clear small color="light" ion-button class="setting-nav" (click)="finder()">
+      <ion-icon name="ios-pin-outline"></ion-icon>
+    </button>
+    <div class="brand">
+      <!-- <ion-title>Home</ion-title> -->
+      <img src="assets/img/logo_chili.png" alt="">
+    </div>
+    <button clear small color="light" ion-button class="upload-nav" (click)="up_product()">
+      <ion-icon name="ios-paper-plane-outline"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="wrapper-query">
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label style="max-width: 30px;">
+            <ion-icon name="ios-swap-outline"></ion-icon>
+          </ion-label>
+          <ion-select style="flex: 1; max-width: none; padding-left: 0; text-align: center; margin: 0" [(ngModel)]="purpose" (ionChange)="select_change()">
+            <ion-option value="">All purpose</ion-option>
+            <ion-option *ngFor="let item of purpose_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label style="max-width: 30px;">
+            <ion-icon name="ios-list-outline"></ion-icon>
+          </ion-label>
+          <ion-select style="flex: 1; max-width: none; padding-left: 0; text-align: center; margin: 0" [(ngModel)]="cat" (ionChange)="select_change()">
+            <ion-option value="">All Categories</ion-option>
+            <ion-option *ngFor="let item of cat_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="price">
+      <ion-item>
+        <ion-label style="width: 100%; margin-bottom: 0; margin-right: 5px;">Price
+          <span style="float: right;">
+           <ion-badge style="margin: 0;" color="dark" item-end="">{{price.lower}}</ion-badge>
+           <ion-badge style="margin: 0;" color="dark" item-end="">{{price.upper}}</ion-badge>
+         </span>
+       </ion-label>
+       <ion-range style="padding: 0;" dualKnobs="true" color="dark" [(ngModel)]="price" min="0" max="1000" step="5" (ionChange)="select_change()">
+        <ion-label small range-left>0</ion-label>
+        <ion-label small range-right>1000</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+  </ion-row>
+</div>
+<div *ngIf="lists[0] == null && query != null" class="empty_data">
+  <div>
+    <h4>not found</h4>
+    <p>Did not find the right product for your search!</p>
+  </div>
+</div>
+<ion-list class="lst-products" *ngIf="lists[0] != null">
+  <ion-card *ngFor="let item of lists ; let i = index">
+    <ion-item>
+      <ion-avatar item-start (click)="view_prf(item.user_id)">
+        <img *ngIf="item.avt != null && item.avt.indexOf('graph.facebook.com')==-1" src="{{base_url + item.avt}}">
+        <img *ngIf="item.avt != null && item.avt.indexOf('graph.facebook.com')!=-1" src="{{item.avt}}">
+        <img *ngIf="item.avt == null" src="assets/avt.png">
+
+      </ion-avatar>
+      <h2><b (click)="view_prf(item.user_id)">{{item.user_name}}</b> posted {{item.created_at}}</h2>
+      <div class="more">
+        <button [ngClass]="{'active' : (item.report == true)}" ion-button icon-left clear (click)="report(item.id, i)">
+          <ion-icon name="ios-flag-outline"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+    <img src="{{base_url + item.image_path}}" (click)="view(item)" />
+    <ion-card-content (click)="view(item)">
+      <ion-card-title>{{item.title}}</ion-card-title>
+      <rating [(ngModel)]="item.rating" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
+      </rating>
+      <div class="local">
+        <ion-icon name="md-locate"></ion-icon>
+        {{item.location}}
+      </div>
+      <p class="price">price: {{item.price}}</p>
+      <p>{{item.content.slice(0,107) + '...'}}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col col-3>
+        <button ion-button icon-left clear (click)="mail(item)">
+          <ion-icon name="ios-mail"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button icon-left clear (click)="this.helpersProvider.call(item.phone)">
+          <ion-icon name="ios-call"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-3>
+        <button [ngClass]="{'active' : (item.favorites == true)}" ion-button icon-left clear (click)="favorites(item.id, i)">
+          <ion-icon name="ios-heart"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button icon-left clear (click)="this.productProvider.share(item)">
+          <ion-icon name="md-share"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-list>
+<ion-infinite-scroll (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

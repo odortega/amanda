@@ -1,0 +1,40 @@
+<ion-header>
+	<ion-navbar>
+		<button clear small color="light" ion-button class="setting-nav" (click)="finder()">
+			<ion-icon name="ios-pin-outline"></ion-icon>
+		</button>
+		<div class="brand">
+			<!-- <ion-title>Home</ion-title> -->
+			<img src="assets/img/logo_chili.png" alt="">
+		</div>
+		<button clear small color="light" ion-button class="upload-nav" (click)="up_product()">
+			<ion-icon name="ios-paper-plane-outline"></ion-icon>
+		</button>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-card *ngFor="let item of lists, let i = index" [ngClass]="{'show' : (item.parent_id == 0), 'hidden' : (item.parent_id != 0)}">
+		<div [ngClass]="{'active' : (item.active == true)}" *ngIf="item.parent_id == 0" class="wrapper">
+			
+			<div class="thumb">
+				<img (click)="open_cat(item)" src="{{base_url + item.image}}"/>
+				<ion-card-content (click)="open_cat(item)">
+					<ion-card-title>{{item.name}}</ion-card-title>
+					<p><ion-icon name="md-stats"></ion-icon>{{item.total_item}} item</p>
+				</ion-card-content>
+				<button *ngIf="item.tree != false" clear small color="light" ion-button (click)="tree_cat(i)">
+					<ion-icon name="md-list"></ion-icon>
+				</button>
+			</div>
+			<ion-list class="tree" *ngIf="item.tree != false">
+				<button *ngFor="let item_tree of lists" [ngClass]="{'show' : (item_tree.parent_id == item.id), 'hidden' : (item_tree.parent_id != item.id)}" ion-item (click)="open_cat(item_tree)">
+					<ion-label *ngIf="item_tree.parent_id == item.id">{{item_tree.name}}</ion-label>
+					<ion-badge item-end color="dark" *ngIf="item_tree.total_item != 0">{{item_tree.total_item}} item</ion-badge>
+				</button>
+			</ion-list>
+
+		</div>
+	</ion-card>
+</ion-content>
