@@ -1,8 +1,9 @@
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import  * as Constant from '../../config/constants';
-import { Http, Headers } from '@angular/http';
-import {PostDetailPage} from '../post-detail/post-detail';
+import { Http } from '@angular/http';
+//import { Http, Headers } from '@angular/http';
+//import {PostDetailPage} from '../post-detail/post-detail';
 import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
@@ -253,13 +254,15 @@ declare var InfoBox;
  	}
 
  	addGpsMarker(lat,lng){
- 		let marker = new google.maps.Marker({
+/* 
+		let marker = new google.maps.Marker({
  			map: this.map,
  			animation: google.maps.Animation.DROP,
  			icon:'assets/img/gps.png',
  			position: {lat: lat, lng: lng}
  		});     
- 	}
+*/ 
+	}
 
  	addMarker(lat,lng,brandname){
  		let marker = new google.maps.Marker({

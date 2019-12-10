@@ -4,7 +4,8 @@ import { Http, Headers } from '@angular/http';
 import  * as Constant from '../../config/constants';
 import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+//import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import {File} from '@ionic-native/file';
 import {FilePath} from '@ionic-native/file-path';
 import { Camera,CameraOptions } from '@ionic-native/camera';
@@ -243,7 +244,8 @@ declare var cordova: any;
    }
 
    finder() {
-     let modal = this.navCtrl.push('FinderProductPage');
+     //let modal = this.navCtrl.push('FinderProductPage');
+     this.navCtrl.push('FinderProductPage');
    }
 
    up_product(){

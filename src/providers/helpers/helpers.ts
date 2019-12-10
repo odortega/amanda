@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { CallNumber } from '@ionic-native/call-number';
-import * as Constant from '../../config/constants';
+//import * as Constant from '../../config/constants';
 /*
   Generated class for the HelpersProvider provider.
 

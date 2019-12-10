@@ -7,7 +7,7 @@ import { Events } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 import { HelpersProvider } from '../../providers/helpers/helpers';
 
-declare var google;
+//declare var google;
 /**
  * Generated class for the Categories page.
  *

@@ -1,13 +1,17 @@
 import { Component,ViewChild,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ActionSheetController, Platform, LoadingController, ModalController, AlertController} from 'ionic-angular';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
+//import { Http, Headers } from '@angular/http';
 import  * as Constant from '../../config/constants';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+//import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import {File} from '@ionic-native/file';
 import {FilePath} from '@ionic-native/file-path';
 import { Camera,CameraOptions } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
-import {FormBuilder,FormGroup,Validators} from '@angular/forms';
+//import {FormBuilder,FormGroup,Validators} from '@angular/forms';
+import {FormBuilder,Validators} from '@angular/forms';
+
 declare var cordova: any;
 declare var google;
 /**

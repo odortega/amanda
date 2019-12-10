@@ -97,7 +97,8 @@ import { HelpersProvider } from '../../providers/helpers/helpers';
     }
 
     finder() {
-      let modal = this.navCtrl.push('FinderProductPage');
+      //let modal = this.navCtrl.push('FinderProductPage');
+      this.navCtrl.push('FinderProductPage');
     }
 
     report(product_id, i) {

@@ -4,8 +4,8 @@ import { Http, Headers } from '@angular/http';
 import * as Constant from '../../config/constants';
 import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
-import { SocialSharing } from '@ionic-native/social-sharing';
-import { CallNumber } from '@ionic-native/call-number';
+//import { SocialSharing } from '@ionic-native/social-sharing';
+//import { CallNumber } from '@ionic-native/call-number';
 import { ProductProvider} from '../../providers/product/product';
 import { HelpersProvider } from '../../providers/helpers/helpers';
 
@@ -38,8 +38,9 @@ import { HelpersProvider } from '../../providers/helpers/helpers';
    cities: any = null;
    query: any = null;
 
-   constructor(private socialSharing: SocialSharing,
-     private callNumber: CallNumber,
+   constructor(
+   //constructor(private socialSharing: SocialSharing, 
+     //private callNumber: CallNumber,
      public events: Events,
      public navCtrl: NavController,
      public navParams: NavParams,
