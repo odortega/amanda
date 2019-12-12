@@ -28,7 +28,8 @@ page-post-detail {
 						color: #757575;
 					}
 					button.active ion-icon{
-						color: #f5265a;
+						//color: #f5265a;
+						color: #73338B;
 					}
 				}
 			}
@@ -77,7 +78,8 @@ page-post-detail {
 					margin-right: 5px;
 				}
 				&.active{
-					background: #f5265a;
+					//background: #f5265a;
+					color: #73338B;
 					color: #fff;
 					border: none;
 				}

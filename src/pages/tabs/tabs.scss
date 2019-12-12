@@ -1,6 +1,7 @@
 tabs{
 	.tabbar{
-		background: #333 !important;
+		//background: #333 !important;
+		background: #101010 !important;
 		ion-icon{
 			font-size: 2.2rem !important;
 			color: #bebebe !important;
@@ -9,14 +10,20 @@ tabs{
 			min-height: 4.2rem !important;
 		}
 		.tab-button[aria-selected=true]{
-			border-bottom-color: #f5265a !important;
+			//border-bottom-color: #f5265a !important;
+			border-bottom-color: #73338B !important;
 			ion-icon{
-				color: #f5265a !important;
+				//color: #f5265a !important;
+				color: #73338B !important;
 			}
 		}
 	}
 	.tab-button:nth-child(6){
 		display: none !important;
+	}
+
+	.tabs-md .tab-button[aria-selected=true] {
+		color:#73338B;
 	}
 	// .tab-button:nth-child(5) ion-icon[ng-reflect-name="img-profile"]{
 	// 	height: 25px;

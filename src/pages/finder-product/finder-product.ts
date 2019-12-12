@@ -60,7 +60,7 @@ declare var InfoBox;
 
  		this.price = {
  			'lower': 1,
- 			'upper': 100000
+ 			'upper': 1000000
  		};
 
  		this.http.get(Constant.domainConfig.base_url + "api/categories_api/categories").subscribe(data => {

@@ -57,8 +57,8 @@ import { HelpersProvider } from '../../providers/helpers/helpers';
      this.lists = new Array();
 
      this.purpose_lists = [
-     { id: 0, name: 'buy' },
-     { id: 1, name: 'sell' }
+     { id: 0, name: 'necesita' },
+     { id: 1, name: 'ofrece' }
      ]
 
      this.http.get(Constant.domainConfig.base_url + "api/categories_api/categories").subscribe(data => {
@@ -70,7 +70,7 @@ import { HelpersProvider } from '../../providers/helpers/helpers';
 
      this.price = {
        'lower': 1,
-       'upper': 600
+       'upper': 1000000
      };
 
      this.events.subscribe('local: change', () => {
@@ -191,7 +191,7 @@ import { HelpersProvider } from '../../providers/helpers/helpers';
       return;
     }
     let promtDialog = this.alertCtrl.create({
-      title: 'Messages',
+      title: 'Mensajes',
       inputs: [
       {
         name: 'message',
@@ -207,7 +207,7 @@ import { HelpersProvider } from '../../providers/helpers/helpers';
         }
       },
       {
-        text: 'Send',
+        text: 'Enviar',
         handler: data => {
             ///send message via email system
             this.storage.ready().then(() => {
@@ -227,13 +227,13 @@ import { HelpersProvider } from '../../providers/helpers/helpers';
                 this.http.post(this.base_url + 'api/users_api/send_enquiry', post_data, { headers: headers }).subscribe(data => {
                   if (data.json().success == 0) {
                     let toast = this.toastCtrl.create({
-                      message: 'you just can send enquiry after 120 seconds',
+                      message: 'Solo puedes enviar una pregunta despues de 2 minutos',
                       duration: 3000
                     });
                     toast.present();
                   } else {
                     let toast = this.toastCtrl.create({
-                      message: 'Your messages have been sent, thank you !!!',
+                      message: 'Tus mensajes han sido enviados, gracias !!!',
                       duration: 3000
                     });
                     toast.present();

@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>finder</ion-title>
+    <ion-title>Buscador</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -18,7 +18,7 @@
         <ion-icon name="ios-list-outline"></ion-icon>
       </ion-label>
       <ion-select style="flex: 1; max-width: none; padding-left: 0; text-align: center; margin: 0" [(ngModel)]="distance" (ionChange)="change_distance()">
-        <ion-option value="">Distance (Not Set)</ion-option>
+        <ion-option value="">Distancia (No importa)</ion-option>
         <ion-option *ngFor="let item of distance_list; let i = index" value="{{item}}">{{item}}km</ion-option>
       </ion-select>
     </ion-item>
@@ -31,7 +31,7 @@
         <ion-icon name="ios-list-outline"></ion-icon>
       </ion-label>
       <ion-select style="flex: 1; max-width: none; padding-left: 0; text-align: center; margin: 0" [(ngModel)]="cat" (ionChange)="select_change()">
-        <ion-option value="">All Categories</ion-option>
+        <ion-option value="">Todas las categorías</ion-option>
         <ion-option *ngFor="let item of cat_lists; let i = index" value="{{item.id}}">{{item.name}}</ion-option>
       </ion-select>
     </ion-item>
@@ -41,7 +41,7 @@
 
 <ion-row class="price">
   <ion-item>
-    <ion-label style="width: 100%; margin-bottom: 0; margin-right: 5px;">Price
+    <ion-label style="width: 100%; margin-bottom: 0; margin-right: 5px;">Precio
       <span style="float: right;">
         <ion-badge style="margin: 0;" color="dark" item-end="">{{price.lower}}</ion-badge>
         <ion-badge style="margin: 0;" color="dark" item-end="">{{price.upper}}</ion-badge>
@@ -49,7 +49,7 @@
     </ion-label>
     <ion-range style="padding: 0;" dualKnobs="true" color="dark" [(ngModel)]="price" min="1" max="1000000" step="1" (ionBlur)="select_change()">
       <ion-label small range-left>0</ion-label>
-      <ion-label small range-right>1000</ion-label>
+      <ion-label small range-right>1000000</ion-label>
     </ion-range>
   </ion-item>
 </ion-row>
@@ -58,8 +58,8 @@
 
 <div #map id="map"></div> 
 <div style="text-align: center;margin-top: 5px;margin-bottom: 50px">
- <button ion-button (click)="prev()">Prev</button>
- <button ion-button (click)="next()">Next</button>
- <button ion-button (click)="loadMore()">Load More</button>
+ <button ion-button (click)="prev()">Anterior</button>
+ <button ion-button (click)="next()">Siguiente</button>
+ <button ion-button (click)="loadMore()">Cargar Más</button>
 </div>
 </ion-content>

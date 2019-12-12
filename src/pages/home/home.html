@@ -8,7 +8,7 @@
       <img src="assets/img/logo_chili.png" alt="">
     </div>
     <button clear small color="light" ion-button class="upload-nav" (click)="up_product()">
-      <ion-icon name="ios-paper-plane-outline"></ion-icon>
+      <ion-icon name="ios-add-circle-outline"></ion-icon>
     </button>
   </ion-navbar>
 </ion-header>
@@ -34,8 +34,8 @@
   </div>
   <div *ngIf="lists.empty == 1" class="empty_data">
     <div>
-      <h4>not found</h4>
-      <p>There are currently no products available in the area you require!</p>
+      <h4>Sé quién publique el primer anuncio</h4>
+      <p>No hay anuncios disponibles en el área que buscas!</p>
     </div>
   </div>
   <ion-list class="lst-products" *ngIf="lists.empty != 1">
@@ -50,7 +50,7 @@
           <img *ngIf="item.avt == null" src="assets/avt.png">
 
         </ion-avatar>
-        <h2><b (click)="this.helpersProvider.viewProfile(this.navCtrl,item.user_id)">{{item.user_name}}</b> posted {{item.created_at}}</h2>
+        <h2><b (click)="this.helpersProvider.viewProfile(this.navCtrl,item.user_id)">{{item.user_name}}</b> publicado {{item.created_at}}</h2>
         <div class="more">
           <button [ngClass]="{'active' : (item.report == true)}" ion-button icon-left clear (click)="report(item.id, i)">
             <ion-icon name="ios-flag-outline"></ion-icon>
@@ -68,7 +68,7 @@
           <ion-icon name="md-locate"></ion-icon>
           {{item.location}}
         </div>
-        <p class="price">price: {{item.price}}</p>
+        <p class="price">precio: {{item.price}}</p>
         <p>{{item.content.toString().slice(0,107) + '...'}}</p>
       </ion-card-content>
       <ion-row>

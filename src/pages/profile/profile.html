@@ -8,7 +8,7 @@
       <img src="assets/img/logo_chili.png" alt="">
     </div>
     <button *ngIf="user_view == null" clear small color="light" ion-button class="upload-nav" (click)="up_product()">
-      <ion-icon name="ios-paper-plane-outline"></ion-icon>
+      <ion-icon name="ios-add-circle-outline"></ion-icon>
     </button>
   </ion-navbar>
 </ion-header>
@@ -56,7 +56,7 @@
       <p class="email">{{obj.email}}</p>
       <p class="phone">
         <ion-icon name="ios-call"></ion-icon>+{{obj.phone}}</p>
-        <p class="photo_numb">All {{total_item}} items posted</p>
+        <p class="photo_numb">Todos {{total_item}} anuncios publicados</p>
       </div>
     </div>
     <div class="more-info" padding *ngIf="user_view != null">
@@ -71,23 +71,23 @@
         <ion-label stacked> {{'fullname' | translate }}</ion-label>
         <ion-input [(ngModel)]="full_name" type="text"></ion-input>
       </ion-item>
-      <i class="text-left">* 5 < length < 50 characters</i>
+      <i class="text-left">* 5 < length < 50 caracteres</i>
       <ion-item>
         <ion-label stacked>Phone</ion-label>
         <ion-input [(ngModel)]="phone" type="number"></ion-input>
       </ion-item>
-      <i class="text-left">* 6 < length < 20 number</i>
+      <i class="text-left">* 6 < length < 20 numérico</i>
       <ion-item>
-        <ion-label stacked>Address</ion-label>
+        <ion-label stacked>Dirección</ion-label>
         <ion-input [(ngModel)]="address" type="text"></ion-input>
       </ion-item>
-      <i class="text-left">* 5 < length < 250 characters</i>
+      <i class="text-left">* 5 < length < 250 caracteres</i>
       <b *ngIf="msg_err_edit != null" class="msg_err">{{msg_err_edit}}</b>
       <button ion-button small clear (click)="upload_edit()">
         {{'save' | translate }}
       </button>
       <h4>{{'change_password' | translate }}</h4>
-      <i>5 < pwd < 60 characters && do not contain special characters</i>
+      <i>5 < pwd < 60 caracteres, ni contener caracteres especiales</i>
       <ion-item>
         <ion-label stacked> {{'old_password' | translate }}</ion-label>
         <ion-input [(ngModel)]="old_pwd" type="password"></ion-input>

@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Post Detail</ion-title>
+    <ion-title>Detalle de Anuncio</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -22,7 +22,7 @@
     </ion-avatar>
     <div>
       <h2 (click)="view_prf(obj.user_id)">{{obj.user_name}}</h2>
-      <p>posted at {{obj.created_at}}</p>
+      <p>publicado en {{obj.created_at}}</p>
     </div>
     <div class="more">
       <button ion-button icon-left clear [ngClass]="{'active' : (obj.report == true)}" (click)="report(obj.id)">

@@ -36,13 +36,13 @@
       <ion-label stacked>    {{'title' | translate }}</ion-label>
       <ion-input type="text" formControlName="title" placeholder="Title"></ion-input>
     </ion-item>
-     <p class="err"  *ngIf="!form.controls.title.valid  && (form.controls.title.dirty || submitAttempt)">*Require, More than 5 and less than 200 characters</p>
+     <p class="err"  *ngIf="!form.controls.title.valid  && (form.controls.title.dirty || submitAttempt)">*Requerido, más de 5  y menos de 200 caracteres</p>
 
     <ion-item>
       <ion-label stacked>    {{'price' | translate }}</ion-label>
       <ion-input type="number" formControlName="price" placeholder="Price"></ion-input>
     </ion-item>
-      <p class="err"  *ngIf="!form.controls.price.valid  && (form.controls.price.dirty || submitAttempt)">* Required</p>
+      <p class="err"  *ngIf="!form.controls.price.valid  && (form.controls.price.dirty || submitAttempt)">* Requerido</p>
 
     <ion-item>
       <ion-label>    {{'categories' | translate }}</ion-label>
@@ -80,7 +80,7 @@
       <ion-label stacked>    {{'content' | translate }}</ion-label>
       <ion-textarea formControlName="content" placeholder="Content"></ion-textarea>
     </ion-item>
-       <p class="err"  *ngIf="!form.controls.content.valid  && (form.controls.content.dirty || submitAttempt)">* Required</p>
+       <p class="err"  *ngIf="!form.controls.content.valid  && (form.controls.content.dirty || submitAttempt)">* Requerido</p>
     <button class="btn-save" ion-button round color="dark" type="submit" (click)="edit()" [disabled]="!form.valid">   
      {{'save' | translate }}</button>
   </div>
