@@ -8,7 +8,7 @@
       <ion-item>
          <ion-input placeholder="{{'username' | translate}}" formControlName="user_name" type="text"></ion-input>
       </ion-item>
-      <p class="err"  *ngIf="!form.controls.user_name.valid  && (form.controls.user_name.dirty || submitAttempt)">* Más de 5 y menos de 50 caracteres/p>
+      <p class="err"  *ngIf="!form.controls.user_name.valid  && (form.controls.user_name.dirty || submitAttempt)">* Más de 5 y menos de 50 caracteres</p>
 
       <ion-item>
          <ion-input placeholder="{{'fullname' | translate}}" formControlName="full_name"  type="text"></ion-input>
@@ -22,7 +22,7 @@
 
    
       <ion-item>
-         <ion-input placeholder="{{'phone' | translate}}" formControlName="phone"  type="text"></ion-input>
+         <ion-input placeholder="{{'phone' | translate}}" formControlName="phone"  type="number"></ion-input>
       </ion-item>
           <p class="err"  *ngIf="!form.controls.phone.valid  && (form.controls.phone.dirty || submitAttempt)">* Más de 5 y menos de 50 caracteres</p>
     
